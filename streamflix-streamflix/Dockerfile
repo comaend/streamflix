@@ -19,6 +19,7 @@ RUN apt-get update \
         curl \
         ca-certificates \
         sqlite3 \
+        libsqlite3-dev \
     && docker-php-ext-install pdo pdo_sqlite \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
