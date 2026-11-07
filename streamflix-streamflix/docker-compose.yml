@@ -1,0 +1,33 @@
+# StreamFlix — Umbrel Community App Store docker-compose.yml
+#
+# Umbrel zieht ein vorgebautes Image aus der Container-Registry (kein lokales Build).
+# Das Image wird automatisch über GitHub Actions gebaut und gepusht.
+#
+# Medienordner schreibgeschützt einbinden (weitere Bind-Mounts bei Bedarf):
+#   - /mnt/hdd/Movies:/media/Movies:ro
+#   - /mnt/hdd/Series:/media/Series:ro
+
+services:
+  streamflix:
+    image: ghcr.io/comaend/streamflix:1.0.0
+    restart: unless-stopped
+    stop_grace_period: 1m
+    user: "1000:1000"
+    volumes:
+      # Persistente App-Daten (Datenbank, Uploads, Cache)
+      - streamflix_data:/var/www/html/data
+      # Medienbibliothek schreibgeschützt
+      - /media:/media:ro
+    environment:
+      APP_DATA_DIR: /var/www/html/data
+      MEDIA_ROOT: /media
+      TZ: Europe/Berlin
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /var/www/html/health.php"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+volumes:
+  streamflix_data:
