@@ -48,5 +48,5 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD php -r "file_exists('/var/www/html/health.php') ? exit(0) : exit(1);"
 
-# Nginx (daemonisiert) + PHP-FPM (Foreground) starten
-CMD ["sh", "-c", "nginx && php-fpm -F"]
+# Nginx im Vordergrund starten (daemon off) + PHP-FPM im Vordergrund
+CMD ["sh", "-c", "nginx -g 'daemon off;' & php-fpm -F"]
