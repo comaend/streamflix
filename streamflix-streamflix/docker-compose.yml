@@ -1,13 +1,21 @@
 # StreamFlix — Umbrel Community App Store docker-compose.yml
 #
 # Umbrel zieht ein vorgebautes Image aus der Container-Registry (kein lokales Build).
-# Das Image wird automatisch über GitHub Actions gebaut und gepusht.
+# Das Image wird automatisch über GitHub Actions gebaut und gepuscht.
+# WICHTIG: Das Image bei ghcr.io muss öffentlich sein, damit Umbrel es ziehen kann.
 #
 # Medienordner schreibgeschützt einbinden (weitere Bind-Mounts bei Bedarf):
 #   - /mnt/hdd/Movies:/media/Movies:ro
 #   - /mnt/hdd/Series:/media/Series:ro
 
 services:
+  # app_proxy wird von Umbrel benötigt, um den Port 8080 weiterzuleiten.
+  app_proxy:
+    environment:
+      APP_HOST: $GATEWAY_IP
+      APP_PORT: 8080
+      PROXY_AUTH_ADD: "false"
+
   streamflix:
     image: ghcr.io/comaend/streamflix:1.0.0
     restart: unless-stopped
