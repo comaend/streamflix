@@ -1,0 +1,32 @@
+manifestVersion: 1
+id: sflix-streamflix
+category: media
+name: STREAMFLIX
+version: "1.0.0"
+tagline: Deine private Streaming-Plattform für Filme und Serien
+description: >-
+  STREAMFLIX ist eine selbst gehostete Streaming-Plattform im Netflix-Stil für deine eigenen Filme und Serien.
+  Mehrere Benutzer mit Profilen, Watchlist, Weiterschauen, Suche, Empfehlungen, Untertitel, Audiospuren
+  und ein vollständiges Admin-Center. Videos werden wenn möglich direkt abgespielt (Direct Play),
+  inkompatible Formate werden per FFmpeg als HLS bereitgestellt.
+
+
+  Deine Medien werden ausschließlich schreibgeschützt gelesen. Alle Metadaten und Bilder liegen lokal,
+  es werden keine externen Dienste benötigt.
+
+
+  Wichtig: STREAMFLIX bringt ein eigenes Login mit. Das Umbrel-Passwort wird vor der App nicht abgefragt.
+  Das erste registrierte Konto wird automatisch zum Superadmin.
+developer: STREAMFLIX Project
+website: ""
+dependencies: []
+repo: ""
+support: ""
+port: 8484
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+releaseNotes: >-
+  Erste Version.
+submitter: STREAMFLIX Project
